@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compare military power of USA, Russia, China, India, Pakistan, and Israel with progress bars, winning predictions, and modern visualizations.">
+    <meta name="keywords" content="military power comparison, USA military, Russia military, China military, India military, Pakistan military, Israel military, progress bar">
+    <meta name="author" content="Military Comparison Team">
+    <title>Military Power Comparison 2025 - USA, Russia, China, India, Pakistan, Israel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @keyframes slideIn {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        .animate-slide-in { animation: slideIn 0.5s ease-out; }
+        .progress-bar { transition: width 1s ease-in-out; }
+    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Military Power Comparison 2025",
+        "description": "Compare military power statistics for USA, Russia, China, India, Pakistan, and Israel with progress bars and predictions.",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Military Comparison Team"
+        }
+    }
+    </script>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+    <header class="bg-gray-800 py-8 shadow-lg">
+        <div class="container mx-auto px-4">
+            <h1 class="text-5xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">Military Power Comparison 2025</h1>
+            <p class="text-center mt-3 text-gray-300 text-lg">Compare military strengths with progress bars and winning predictions</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <!-- Comparison Section -->
+        <section id="compare" class="mb-12 bg-gray-800 p-8 rounded-xl shadow-2xl">
+            <h2 class="text-3xl font-bold mb-6 text-center">Compare Two Countries</h2>
+            <div class="flex flex-col md:flex-row justify-center gap-4 mb-6">
+                <select id="country1" class="bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="USA">USA</option>
+                    <option value="Russia">Russia</option>
+                    <option value="China">China</option>
+                    <option value="India">India</option>
+                    <option value="Pakistan">Pakistan</option>
+                    <option value="Israel">Israel</option>
+                </select>
+                <select id="country2" class="bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="Russia">Russia</option>
+                    <option value="USA">USA</option>
+                    <option value="China">China</option>
+                    <option value="India">India</option>
+                    <option value="Pakistan">Pakistan</option>
+                    <option value="Israel">Israel</option>
+                </select>
+                <button onclick="compareCountries()" class="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg transition">Compare</button>
+            </div>
+            <div id="comparison-result" class="hidden mt-8">
+                <h3 class="text-2xl font-semibold mb-4 text-center">Comparison Results</h3>
+                <div id="progress-bars" class="space-y-6"></div>
+                <div id="winner" class="mt-6 text-center">
+                    <p class="text-xl font-bold">Predicted Winner: <span id="winner-name" class="text-blue-400"></span></p>
+                    <p id="winner-score" class="text-gray-400"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Country Cards -->
+        <section id="countries" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <article class="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-2xl transition animate-slide-in">
+                <h2 class="text-2xl font-semibold mb-4">USA</h2>
+                <ul class="space-y-2">
+                    <li><i class="fas fa-fighter-jet mr-2"></i> Air Force: 5,200+ aircraft</li>
+                    <li><i class="fas fa-ship mr-2"></i> Navy: 11 aircraft carriers</li>
+                    <li><i class="fas fa-users mr-2"></i> Active Personnel: 1.4M</li>
+                    <li><i class="fas fa-bomb mr-2"></i> Nuclear Warheads: ~5,800</li>
+                </ul>
+                <button class="mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded" onclick="showDetails('USA')">View Details</button>
+            </article>
+            <article class="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-2xl transition animate-slide-in">
+                <h2 class="text-2xl font-semibold mb-4">Russia</h2>
+                <ul class="space-y-2">
+                    <li><i class="fas fa-fighter-jet mr-2"></i> Air Force: 4,100+ aircraft</li>
+                    <li><i class="fas fa-ship mr-2"></i> Navy: 1 aircraft carrier</li>
+                    <li><i class="fas fa-users mr-2"></i> Active Personnel: 1M</li>
+                    <li><i class="fas fa-bomb mr-2"></i> Nuclear Warheads: ~6,400</li>
+                </ul>
+                <button class="mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded" onclick="showDetails('Russia')">View Details</button>
+            </article>
+            <article class="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-2xl transition animate-slide-in">
+                <h2 class="text-2xl font-semibold mb-4">China</h2>
+                <ul class="space-y-2">
+                    <li><i class="fas fa-fighter-jet mr-2"></i> Air Force: 3,200+ aircraft</li>
+                    <li><i class="fas fa-ship mr-2"></i> Navy: 3 aircraft carriers</li>
+                    <li><i class="fas fa-users mr-2"></i> Active Personnel: 2M</li>
+                    <li><i class="fas fa-bomb mr-2"></i> Nuclear Warheads: ~350</li>
+                </ul>
+                <button class="mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded" onclick="showDetails('China')">View Details</button>
+            </article>
+            <article class="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-2xl transition animate-slide-in">
+                <h2 class="text-2xl font-semibold mb-4">India</h2>
+                <ul class="space-y-2">
+                    <li><i class="fas fa-fighter-jet mr-2"></i> Air Force: 2,100+ aircraft</li>
+                    <li><i class="fas fa-ship mr-2"></i> Navy: 1 aircraft carrier</li>
+                    <li><i class="fas fa-users mr-2"></i> Active Personnel: 1.4M</li>
+                    <li><i class="fas fa-bomb mr-2"></i> Nuclear Warheads: ~150</li>
+                </ul>
+                <button class="mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded" onclick="showDetails('India')">View Details</button>
+            </article>
+            <article class="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-2xl transition animate-slide-in">
+                <h2 class="text-2xl font-semibold mb-4">Pakistan</h2>
+                <ul class="space-y-2">
+                    <li><i class="fas fa-fighter-jet mr-2"></i> Air Force: 900+ aircraft</li>
+                    <li><i class="fas fa-ship mr-2"></i> Navy: 0 aircraft carriers</li>
+                    <li><i class="fas fa-users mr-2"></i> Active Personnel: 650K</li>
+                    <li><i class="fas fa-bomb mr-2"></i> Nuclear Warheads: ~165</li>
+                </ul>
+                <button class="mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded" onclick="showDetails('Pakistan')">View Details</button>
+            </article>
+            <article class="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-2xl transition animate-slide-in">
+                <h2 class="text-2xl font-semibold mb-4">Israel</h2>
+                <ul class="space-y-2">
+                    <li><i class="fas fa-fighter-jet mr-2"></i> Air Force: 600+ aircraft</li>
+                    <li><i class="fas fa-ship mr-2"></i> Navy: 0 aircraft carriers</li>
+                    <li><i class="fas fa-users mr-2"></i> Active Personnel: 170K</li>
+                    <li><i class="fas fa-bomb mr-2"></i> Nuclear Warheads: ~90</li>
+                </ul>
+                <button class="mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded" onclick="showDetails('Israel')">View Details</button>
+            </article>
+        </section>
+
+        <!-- Modal for Details -->
+        <div id="modal" class="fixed inset-0 bg-black bg-opacity-75 hidden flex items-center justify-center">
+            <div class="bg-gray-800 p-8 rounded-xl max-w-lg w-full">
+                <h3 id="modal-title" class="text-2xl font-bold mb-4"></h3>
+                <p id="modal-content" class="text-gray-300"></p>
+                <button class="mt-6 bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2025 Military Comparison Team. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const countryData = {
+            'USA': { airForce: 5200, navy: 11, personnel: 1400000, nuclear: 5800, details: 'The United States maintains the world’s most powerful military with advanced technology, global reach, and significant defense spending.' },
+            'Russia': { airForce: 4100, navy: 1, personnel: 1000000, nuclear: 6400, details: 'Russia’s military is known for its large nuclear arsenal and robust ground forces, with a focus on regional dominance.' },
+            'China': { airForce: 3200, navy: 3, personnel: 2000000, nuclear: 350, details: 'China has rapidly modernized its military, boasting the largest standing army and expanding naval capabilities.' },
+            'India': { airForce: 2100, navy: 1, personnel: 1400000, nuclear: 150, details: 'India’s military is one of the largest, with a focus on regional security and growing indigenous defense production.' },
+            'Pakistan': { airForce: 900, navy: 0, personnel: 650000, nuclear: 165, details: 'Pakistan’s military is well-equipped for regional conflicts, with a notable nuclear arsenal and strong air force.' },
+            'Israel': { airForce: 600, navy: 0, personnel: 170000, nuclear: 90, details: 'Israel’s military is highly advanced, with cutting-edge technology and a focus on rapid response and defense.' }
+        };
+
+        function compareCountries() {
+            const country1 = document.getElementById('country1').value;
+            const country2 = document.getElementById('country2').value;
+            if (country1 === country2) {
+                alert('Please select two different countries.');
+                return;
+            }
+
+            const data1 = countryData[country1];
+            const data2 = countryData[country2];
+            const resultDiv = document.getElementById('comparison-result');
+            const barsDiv = document.getElementById('progress-bars');
+
+            // Normalize values for progress bars (scale to 100%)
+            const maxValues = {
+                airForce: Math.max(...Object.values(countryData).map(d => d.airForce)),
+                navy: Math.max(...Object.values(countryData).map(d => d.navy)),
+                personnel: Math.max(...Object.values(countryData).map(d => d.personnel)),
+                nuclear: Math.max(...Object.values(countryData).map(d => d.nuclear))
+            };
+
+            // Generate progress bars
+            barsDiv.innerHTML = `
+                <div>
+                    <p class="font-semibold">Air Force (Aircraft)</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-1/2">
+                            <p>${country1}: ${data1.airForce}</p>
+                            <div class="bg-gray-700 h-4 rounded-full">
+                                <div class="bg-blue-500 h-4 rounded-full progress-bar" style="width: ${(data1.airForce / maxValues.airForce) * 100}%"></div>
+                            </div>
+                        </div>
+                        <div class="w-1/2">
+                            <p>${country2}: ${data2.airForce}</p>
+                            <div class="bg-gray-700 h-4 rounded-full">
+                                <div class="bg-purple-500 h-4 rounded-full progress-bar" style="width: ${(data2.airForce / maxValues.airForce) * 100}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p class="font-semibold">Navy (Aircraft Carriers)</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-1/2">
+                            <p>${country1}: ${data1.navy}</p>
+                            <div class="bg-gray-700 h-4 rounded-full">
+                                <div class="bg-blue-500 h-4 rounded-full progress-bar" style="width: ${(data1.navy / maxValues.navy) * 100}%"></div>
+                            </div>
+                        </div>
+                        <div class="w-1/2">
+                            <p>${country2}: ${data2.navy}</p>
+                            <div class="bg-gray-700 h-4 rounded-full">
+                                <div class="bg-purple-500 h-4 rounded-full progress-bar" style="width: ${(data2.navy / maxValues.navy) * 100}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p class="font-semibold">Active Personnel</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-1/2">
+                            <p>${country1}: ${data1.personnel.toLocaleString()}</p>
+                            <div class="bg-gray-700 h-4 rounded-full">
+                                <div class="bg-blue-500 h-4 rounded-full progress-bar" style="width: ${(data1.personnel / maxValues.personnel) * 100}%"></div>
+                            </div>
+                        </div>
+                        <div class="w-1/2">
+                            <p>${country2}: ${data2.personnel.toLocaleString()}</p>
+                            <div class="bg-gray-700 h-4 rounded-full">
+                                <div class="bg-purple-500 h-4 rounded-full progress-bar" style="width: ${(data2.personnel / maxValues.personnel) * 100}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p class="font-semibold">Nuclear Warheads</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-1/2">
+                            <p>${country1}: ${data1.nuclear}</p>
+                            <div class="bg-gray-700 h-4 rounded-full">
+                                <div class="bg-blue-500 h-4 rounded-full progress-bar" style="width: ${(data1.nuclear / maxValues.nuclear) * 100}%"></div>
+                            </div>
+                        </div>
+                        <div class="w-1/2">
+                            <p>${country2}: ${data2.nuclear}</p>
+                            <div class="bg-gray-700 h-4 rounded-full">
+                                <div class="bg-purple-500 h-4 rounded-full progress-bar" style="width: ${(data2.nuclear / maxValues.nuclear) * 100}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Calculate winner (simple weighted score)
+            const weights = { airForce: 0.3, navy: 0.3, personnel: 0.2, nuclear: 0.2 };
+            const score1 = (data1.airForce / maxValues.airForce) * weights.airForce +
+                          (data1.navy / maxValues.navy) * weights.navy +
+                          (data1.personnel / maxValues.personnel) * weights.personnel +
+                          (data1.nuclear / maxValues.nuclear) * weights.nuclear;
+            const score2 = (data2.airForce / maxValues.airForce) * weights.airForce +
+                          (data2.navy / maxValues.navy) * weights.navy +
+                          (data2.personnel / maxValues.personnel) * weights.personnel +
+                          (data2.nuclear / maxValues.nuclear) * weights.nuclear;
+
+            const winner = score1 > score2 ? country1 : country2;
+            const winnerScore = Math.max(score1, score2).toFixed(2);
+            const loserScore = Math.min(score1, score2).toFixed(2);
+
+            document.getElementById('winner-name').textContent = winner;
+            document.getElementById('winner-score').textContent = `Score: ${winnerScore} vs ${loserScore}`;
+            resultDiv.classList.remove('hidden');
+        }
+
+        function showDetails(country) {
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalContent = document.getElementById('modal-content');
+
+            modalTitle.textContent = country;
+            modalContent.textContent = countryData[country].details;
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
